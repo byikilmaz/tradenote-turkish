@@ -46,7 +46,7 @@ console.log(' -> Database URI ' + hiddenDatabaseURI)
 let tradenoteDatabase = process.env.TRADENOTE_DATABASE
 
 var app = express();
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));  // Increased limit for large trade imports
 
 const port = process.env.TRADENOTE_PORT;
 const PROXY_PORT = 39482;
