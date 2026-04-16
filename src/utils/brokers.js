@@ -72,7 +72,9 @@ export async function useBrokerMetaTrader5(param) {
     return new Promise(async (resolve, reject) => {
         try {
             // Handle both ArrayBuffer (file upload) and base64 string (API)
+            console.log(" -> MT5 parser input type:", typeof param);
             var workbook = typeof param === 'string' ? XLSX.read(param, {type: 'base64'}) : XLSX.read(param);
+            console.log(" -> Workbook sheets:", workbook.SheetNames);
             var result = {};
             workbook.SheetNames.forEach((sheetName) => {
                 var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
