@@ -98,7 +98,7 @@ export async function useBrokerMetaTrader5(param) {
                 let temp = {}
                 let row = result[Object.keys(result)[0]][i]
                 //console.log("row "+JSON.stringify(row))
-                if (!row.hasOwnProperty("Trade History Report")) {
+                if (!row || !row.hasOwnProperty("Trade History Report")) {
                     dealIterate = false
                 } else {
                     //console.log("row " + JSON.stringify(row))
