@@ -116,8 +116,15 @@ export async function useBrokerMetaTrader5(param) {
                     temp["S/D"] = newDate
                     temp.Currency = "USD"
                     temp.Type = "stock"
-                    if (symbol.length == 6 && /^[a-zA-Z]/.test(symbol)) {
+                    // Clean symbol for type detection (remove trailing -, #, etc.)
+                    let cleanSymbol = symbol.replace(/[-#]$/, '')
+                    // Forex pairs are 6 letters (e.g., EURUSD, AUDUSD)
+                    if (cleanSymbol.length == 6 && /^[a-zA-Z]+$/.test(cleanSymbol)) {
                         temp.Type = "forex"
+                    }
+                    // Futures/CFDs: indices (NASDAQ, SPX500, DOW), commodities (XAUUSD, XAGUSD, USOIL)
+                    else if (/^(NASDAQ|SPX500|DOW|US30|NAS100|XAUUSD|XAGUSD|USOIL|UKOIL|COPPER|GOLD|SILVER)/i.test(cleanSymbol)) {
+                        temp.Type = "future"
                     }
                         //console.log("  --> Type: " + temp.Type)
                         if (Object.values(row)[3] == "buy" && Object.values(row)[4] == "in") {
