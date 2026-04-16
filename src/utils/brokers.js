@@ -71,7 +71,8 @@ export async function useBrokerTradeZero(param) {
 export async function useBrokerMetaTrader5(param) {
     return new Promise(async (resolve, reject) => {
         try {
-            var workbook = XLSX.read(param);
+            // Handle both ArrayBuffer (file upload) and base64 string (API)
+            var workbook = typeof param === 'string' ? XLSX.read(param, {type: 'base64'}) : XLSX.read(param);
             var result = {};
             workbook.SheetNames.forEach((sheetName) => {
                 var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
