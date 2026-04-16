@@ -386,27 +386,34 @@ const setupApiRoutes = (app) => {
 
     app.post('/api/trades', validateApiKey, async (req, res) => {
         const data = req.body;
+        console.log("\n=== API /api/trades called ===");
+        console.log(" -> selectedBroker:", data.selectedBroker);
+        console.log(" -> data length:", data.data ? data.data.length : 'undefined');
         try {
             if (data && !data.data.length > 0) {
                 res.status(200).send(" -> No trades to import");
             }
             else {
-
+                console.log(" -> Processing trades...");
                 uploadMfePrices.value = data.uploadMfePrices
 
-                //console.log(" uploadMfePrices "+uploadMfePrices.value)
-                // Call the function from addTrades.js
-
+                console.log(" -> Calling useGetTimeZone...");
                 await useGetTimeZone()
+                console.log(" -> Calling useGetExistingTradesArray...");
                 await useGetExistingTradesArray("api", ParseNode)
+                console.log(" -> Calling useImportTrades...");
                 await useImportTrades(data.data, "api", data.selectedBroker, ParseNode)
+                console.log(" -> Calling useUploadTrades...");
                 await useUploadTrades("api", ParseNode)
 
+                console.log(" -> Success!");
                 res.status(200).send(" -> Saved Trades to ParseNode DB");
             }
         } catch (error) {
-            console.error(error);
-            res.status(500).send({ error: 'Error creating executions' });
+            console.error("=== ERROR in /api/trades ===");
+            console.error("Error message:", error.message);
+            console.error("Error stack:", error.stack);
+            res.status(500).send({ error: 'Error creating executions', details: error.message });
         }
     });
 
