@@ -417,6 +417,42 @@ const setupApiRoutes = (app) => {
         }
     });
 
+    // DELETE all trades for the user
+    app.delete('/api/trades', validateApiKey, async (req, res) => {
+        console.log("\n=== API DELETE /api/trades called ===");
+        try {
+            // Delete all trades
+            const tradesObject = ParseNode.Object.extend("trades");
+            const tradesQuery = new ParseNode.Query(tradesObject);
+            tradesQuery.equalTo("user", { "__type": "Pointer", "className": "_User", "objectId": currentUser.value.objectId });
+            tradesQuery.limit(10000);
+            const trades = await tradesQuery.find({ useMasterKey: true });
+            console.log(` -> Found ${trades.length} trades to delete`);
+            if (trades.length > 0) {
+                await ParseNode.Object.destroyAll(trades, { useMasterKey: true });
+                console.log(` -> Deleted ${trades.length} trades`);
+            }
+
+            // Delete all executions
+            const execObject = ParseNode.Object.extend("executions");
+            const execQuery = new ParseNode.Query(execObject);
+            execQuery.equalTo("user", { "__type": "Pointer", "className": "_User", "objectId": currentUser.value.objectId });
+            execQuery.limit(10000);
+            const execs = await execQuery.find({ useMasterKey: true });
+            console.log(` -> Found ${execs.length} executions to delete`);
+            if (execs.length > 0) {
+                await ParseNode.Object.destroyAll(execs, { useMasterKey: true });
+                console.log(` -> Deleted ${execs.length} executions`);
+            }
+
+            res.status(200).send({ message: `Deleted ${trades.length} trades and ${execs.length} executions` });
+        } catch (error) {
+            console.error("=== ERROR in DELETE /api/trades ===");
+            console.error("Error:", error.message);
+            res.status(500).send({ error: 'Error deleting trades', details: error.message });
+        }
+    });
+
     app.post('/api/databento', async (req, res) => {
         //console.log(" calling databento")
         const data = req.body;
