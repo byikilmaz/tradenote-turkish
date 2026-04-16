@@ -405,11 +405,12 @@ async function createTempExecutions() {
                 const formatedDateTD = dateArrayTD[2] + "-" + dateArrayTD[0] + "-" + dateArrayTD[1]
                 //console.log("formatedDateTD " + formatedDateTD)
 
-                temp2.td = dayjs.tz(formatedDateTD, timeZoneTrade.value).unix()
+                // Added format string for proper date parsing
+                temp2.td = dayjs.tz(formatedDateTD, "YYYY-MM-DD", timeZoneTrade.value).unix()
 
                 const dateArraySD = tradesData[key]['S/D'].split('/');
                 const formatedDateSD = dateArraySD[2] + "-" + dateArraySD[0] + "-" + dateArraySD[1]
-                temp2.sd = dayjs.tz(formatedDateSD, timeZoneTrade.value).unix()
+                temp2.sd = dayjs.tz(formatedDateSD, "YYYY-MM-DD", timeZoneTrade.value).unix()
 
                 temp2.currency = tradesData[key].Currency;
                 temp2.type = tradesData[key].Type;
