@@ -102,19 +102,23 @@ export async function useBrokerMetaTrader5(param) {
                     dealIterate = false
                 } else {
                     //console.log("row " + JSON.stringify(row))
-                    //check for balance
+                    //check for balance or empty/incomplete rows
                     let checkBalance = Object.values(row)[2]
-                    if (checkBalance != "balance") {
-                        temp.Account = account
-                        let tempDate = Object.values(row)[0].split(" ")[0]
-                        let newDate = tempDate.split(".")[1] + "/" + tempDate.split(".")[2] + "/" + tempDate.split(".")[0]
-                        temp["T/D"] = newDate
-                        temp["S/D"] = newDate
-                        temp.Currency = "USD"
-                        temp.Type = "stock"
-                        if (Object.values(row)[2].length == 6 && /^[a-zA-Z]/.test(Object.values(row)[2])) {
-                            temp.Type = "forex"
-                        }
+                    let symbol = Object.values(row)[2]
+                    // Skip if row is incomplete or is a balance row
+                    if (!symbol || checkBalance == "balance") {
+                        continue
+                    }
+                    temp.Account = account
+                    let tempDate = Object.values(row)[0].split(" ")[0]
+                    let newDate = tempDate.split(".")[1] + "/" + tempDate.split(".")[2] + "/" + tempDate.split(".")[0]
+                    temp["T/D"] = newDate
+                    temp["S/D"] = newDate
+                    temp.Currency = "USD"
+                    temp.Type = "stock"
+                    if (symbol.length == 6 && /^[a-zA-Z]/.test(symbol)) {
+                        temp.Type = "forex"
+                    }
                         //console.log("  --> Type: " + temp.Type)
                         if (Object.values(row)[3] == "buy" && Object.values(row)[4] == "in") {
                             temp.Side = "B"
@@ -128,8 +132,8 @@ export async function useBrokerMetaTrader5(param) {
                         if (Object.values(row)[3] == "sell" && Object.values(row)[4] == "out") {
                             temp.Side = "S"
                         }
-                        temp.SymbolOriginal = Object.values(row)[2]
-                        temp.Symbol = Object.values(row)[2].replace(/#*/, '')
+                        temp.SymbolOriginal = symbol
+                        temp.Symbol = symbol.replace(/#*/, '')
                         temp.Qty = (Object.values(row)[5]).toString()
                         //console.log(" -> Qty import "+temp.Qty)
                         temp.Price = Object.values(row)[6].toString()
@@ -148,7 +152,6 @@ export async function useBrokerMetaTrader5(param) {
                         temp.Liq = ""
                         temp.Note = ""
                         tradesData.push(temp)
-                    }
                 }
             }
         } catch (error) {
