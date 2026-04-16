@@ -968,7 +968,8 @@ export async function useSetValues() {
         if (!localStorage.getItem('selectedBroker')) localStorage.setItem('selectedBroker', "tradeZero")
         selectedBroker.value = localStorage.getItem('selectedBroker')
 
-        if (!localStorage.getItem('selectedDateRange')) localStorage.setItem('selectedDateRange', JSON.stringify({ start: periodRange.filter(element => element.value == 'thisMonth')[0].start, end: periodRange.filter(element => element.value == 'thisMonth')[0].end }))
+        // Default to "all" (Tümü) instead of "thisMonth" so users see all data initially
+        if (!localStorage.getItem('selectedDateRange')) localStorage.setItem('selectedDateRange', JSON.stringify({ start: periodRange.filter(element => element.value == 'all')[0].start, end: periodRange.filter(element => element.value == 'all')[0].end }))
         selectedDateRange.value = JSON.parse(localStorage.getItem('selectedDateRange'))
 
         if (!localStorage.getItem('selectedPeriodRange')) {
