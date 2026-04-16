@@ -1339,7 +1339,16 @@ async function createTrades() {
 
                         /* */
 
-                        trde.grossSharePL = trde.grossProceeds / (trde.buyQuantity) //P&L per share is in reality "per share bought (if long)". So, when trade is closed, we take the total quantity and divide by 2
+                        // For forex/futures, use lot size directly; for stocks, divide by share count
+                        // Forex lots are small decimals (0.1, 0.5, 1), so we use proceeds directly
+                        let quantityForSharePL = trde.buyQuantity
+                        if (trde.type === 'forex' || trde.type === 'future') {
+                            // For forex/futures, treat each lot as 1 unit for "per share" calculation
+                            // This prevents dividing by small decimals which inflates the per-share value
+                            quantityForSharePL = 1
+                        }
+
+                        trde.grossSharePL = trde.grossProceeds / quantityForSharePL
 
                         trde.grossSharePL >= 0 ? trde.grossSharePLWins = trde.grossSharePL : trde.grossSharePLLoss = trde.grossSharePL
 
@@ -1358,7 +1367,7 @@ async function createTrades() {
                             grossWinsCount = 0
                         }
 
-                        trde.netSharePL = trde.netProceeds / (trde.buyQuantity)
+                        trde.netSharePL = trde.netProceeds / quantityForSharePL
                         trde.netSharePL >= 0 ? trde.netSharePLWins = trde.netSharePL : trde.netSharePLLoss = trde.netSharePL
 
                         if (trde.netProceeds >= 0) {
