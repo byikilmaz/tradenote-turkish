@@ -168,13 +168,13 @@ const addNewGroup = async () => {
                     return hexColor;
                 }
                 temp.id = "group_" + (highestId + 1).toString()
-                temp.name = "GroupName"
+                temp.name = "GrupAdı"
                 temp.color = getRandomHexColor()
                 temp.tags = []
             }
             else {
                 temp.id = "group_0"
-                temp.name = "Ungrouped"
+                temp.name = "Grupsuz"
                 temp.color = "#6c757d"
                 temp.tags = []
             }
@@ -215,7 +215,7 @@ const addNewTag = async () => {
             console.log("  --> Highest number " + highestIdNumber);
 
             temp.id = "tag_" + (highestIdNumber + 1).toString()
-            temp.name = "TagName"
+            temp.name = "EtiketAdı"
 
             let ungroupedIndex = newAvailableTags.findIndex(obj => obj.id == 'group_0')
             newAvailableTags[ungroupedIndex].tags.push(temp)
@@ -503,11 +503,11 @@ const updateAPIS = async () => {
                 <!--=============== Layout & Style ===============-->
 
                 <div class="row align-items-center">
-                    <p class="fs-5 fw-bold">Layout & Style</p>
+                    <p class="fs-5 fw-bold">Düzen & Stil</p>
 
                     <!-- Prfile Picture -->
                     <div class="col-12 col-md-4">
-                        Profile Picture
+                        Profil Fotoğrafı
                     </div>
                     <div class="col-12 col-md-8">
                         <input type="file" @change="uploadProfileAvatar" />
@@ -515,14 +515,14 @@ const updateAPIS = async () => {
                 </div>
 
                 <div class="mt-3 mb-3">
-                    <button type="button" v-on:click="updateProfile" class="btn btn-success">Save</button>
+                    <button type="button" v-on:click="updateProfile" class="btn btn-success">Kaydet</button>
                 </div>
 
                 <hr />
 
                 <!--=============== API KEY ===============-->
                 <div class="mt-3 row align-items-center">
-                    <p class="fs-5 fw-bold">API Keys</p>
+                    <p class="fs-5 fw-bold">API Anahtarları</p>
                     <div class="row">
                         <div class="col-12 col-md-4">TradeNote<i class="ps-1 uil uil-info-circle"
                                 data-bs-toggle="tooltip"
@@ -569,7 +569,7 @@ const updateAPIS = async () => {
                 </div>
 
                 <div class="mt-3 mb-3">
-                    <button type="button" v-on:click="updateAPIS" class="btn btn-success">Save</button>
+                    <button type="button" v-on:click="updateAPIS" class="btn btn-success">Kaydet</button>
                 </div>
 
 
@@ -577,18 +577,18 @@ const updateAPIS = async () => {
 
                 <!--=============== TAGS ===============-->
                 <div class="mt-3 row">
-                    <p class="fs-5 fw-bold">TAGS</p>
-                    <p class="fw-lighter">Create tag groups and assign tags to your groups.</p>
+                    <p class="fs-5 fw-bold">ETİKETLER</p>
+                    <p class="fw-lighter">Etiket grupları oluşturun ve gruplarınıza etiket atayın.</p>
                     <div class="row">
                         <div class="col-6">
                             <button type="button" v-on:click="addNewGroup" class="btn blueBtn btn-sm"><i
-                                    class="uil uil-plus me-2"></i>Group</button>
+                                    class="uil uil-plus me-2"></i>Grup</button>
                             <button v-show="newAvailableTags.length > 0" type="button" v-on:click="addNewTag"
-                                class="btn blueBtn btn-sm ms-3"><i class="uil uil-plus me-2"></i>Tag</button>
+                                class="btn blueBtn btn-sm ms-3"><i class="uil uil-plus me-2"></i>Etiket</button>
                         </div>
                         <div class="col-6 text-end">
                             <button class="btn btn-secondary btn-sm mt-2 ms-4 dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Export
+                                data-bs-toggle="dropdown" aria-expanded="false">Dışa Aktar
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item"
@@ -629,14 +629,14 @@ const updateAPIS = async () => {
                 </div>
 
                 <div class="mt-3 mb-3">
-                    <button type="button" v-on:click="updateSortedTags" class="btn btn-success">Save</button>
+                    <button type="button" v-on:click="updateSortedTags" class="btn btn-success">Kaydet</button>
                 </div>
 
                 <!-- Delete Group -->
                 <div class="mt-5 row align-items-center">
                     <div class="col-12 col-md-4">
-                        Group to delete<i class="ps-1 uil uil-info-circle" data-bs-toggle="tooltip"
-                            data-bs-title="Tags will be moved to Ungrouped."></i>
+                        Silinecek Grup<i class="ps-1 uil uil-info-circle" data-bs-toggle="tooltip"
+                            data-bs-title="Etiketler Grupsuz'a taşınacak."></i>
                     </div>
                     <div class="col-12 col-md-8">
                         <select v-on:input="groupToDelete = $event.target.value" class="form-select">
@@ -648,13 +648,13 @@ const updateAPIS = async () => {
                     </div>
                 </div>
                 <div class="mt-3 mb-3">
-                    <button type="button" v-on:click="deleteGroup" class="btn btn-danger">Delete</button>
+                    <button type="button" v-on:click="deleteGroup" class="btn btn-danger">Sil</button>
                 </div>
 
                 <!-- Delete Tag -->
                 <div class="mt-5 row align-items-center">
                     <div class="col-12 col-md-4">
-                        Tag to delete
+                        Silinecek Etiket
                     </div>
                     <div class="col-12 col-md-8">
 
@@ -668,7 +668,7 @@ const updateAPIS = async () => {
                     </div>
                 </div>
                 <div class="mt-3 mb-3">
-                    <button type="button" v-on:click="deleteTag" class="btn btn-danger">Delete</button>
+                    <button type="button" v-on:click="deleteTag" class="btn btn-danger">Sil</button>
                 </div>
 
             </div>
