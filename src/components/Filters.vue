@@ -297,15 +297,15 @@ const selectAllTags = () => {
     <div id="step10" class="col-12 mb-3">
         <div class="dailyCard">
             <div>
-                <span v-if="!filtersOpen" v-on:click="filtersClick" class="pointerClass">Filters <i
+                <span v-if="!filtersOpen" v-on:click="filtersClick" class="pointerClass">Filtreler <i
                         class="uil uil-angle-up"></i>
                 </span>
                 <span v-if="!filtersOpen" class="dashInfoTitle ms-3">
                     <span v-show="filters[pageId].includes('accounts')">
                         <span
-                            v-if="currentUser.hasOwnProperty('accounts') && currentUser.accounts.length == selectedAccounts.length">All
-                            accounts |</span>
-                        <span v-else>Selected accounts |</span>
+                            v-if="currentUser.hasOwnProperty('accounts') && currentUser.accounts.length == selectedAccounts.length">Tüm
+                            hesaplar |</span>
+                        <span v-else>Seçili hesaplar |</span>
                     </span>
 
                     <span v-show="filters[pageId].includes('periodRange')">
@@ -322,13 +322,13 @@ const selectAllTags = () => {
                     </span>
 
                     <span v-show="filters[pageId].includes('positions')">
-                        <span v-if="positions.length == selectedPositions.length">All positions |</span>
+                        <span v-if="positions.length == selectedPositions.length">Tüm pozisyonlar |</span>
                         <span v-else>{{ selectedPositions.toString().charAt(0).toUpperCase() +
                             selectedPositions.toString().slice(1) }} |</span>
                     </span>
 
                     <span v-show="filters[pageId].includes('timeFrame')">
-                        {{ selectedTimeFrame.charAt(0).toUpperCase() + selectedTimeFrame.slice(1) }} timeframe |
+                        {{ selectedTimeFrame.charAt(0).toUpperCase() + selectedTimeFrame.slice(1) }} zaman dilimi |
                     </span>
 
                     <span v-show="filters[pageId].includes('ratio')">
@@ -337,18 +337,18 @@ const selectAllTags = () => {
                     </span>
 
                     <span v-show="filters[pageId].includes('tags')">
-                        <span v-if="tags.length == selectedTags.length">All
-                            tags</span>
-                        <span v-else>Selected tags</span>
+                        <span v-if="tags.length == selectedTags.length">Tüm
+                            etiketler</span>
+                        <span v-else>Seçili etiketler</span>
                     </span>
 
                     <span v-show="filters[pageId].includes('plSatisfaction')">
-                        {{ selectedPlSatisfaction == 'satisfaction' ? 'Satisfaction' : "P&L" }} calendar
+                        {{ selectedPlSatisfaction == 'satisfaction' ? 'Memnuniyet' : "K/Z" }} takvimi
                     </span>
 
                 </span>
 
-                <span v-else v-on:click="filtersClick" class="pointerClass mb-3">Filtreler<i
+                <span v-else v-on:click="filtersClick" class="pointerClass mb-3">Filtreler <i
                         class="uil uil-angle-down"></i>
                 </span>
             </div>
@@ -385,7 +385,7 @@ const selectAllTags = () => {
                 <!-- Accounts -->
                 <div class="col-6 dropdown" v-show="pageId != 'screenshots' && pageId != 'calendar'">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">Accounts <span class="dashInfoTitle">({{ selectedAccounts.length
+                        aria-expanded="false">Hesaplar <span class="dashInfoTitle">({{ selectedAccounts.length
                             }})</span></button>
                     <ul class="dropdown-menu dropdownCheck">
                         <div v-for="item in currentUser.accounts" :key="item.value" class="form-check">
@@ -407,17 +407,17 @@ const selectAllTags = () => {
                     v-show="pageId != 'calendar'">
 
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">Tags <span class="dashInfoTitle">({{ selectedTags.length
+                        aria-expanded="false">Etiketler <span class="dashInfoTitle">({{ selectedTags.length
                             }})</span></button>
 
                     <ul class="dropdown-menu dropdownCheck">
                         <div>
                             <a class="pointerClass nav-link" v-on:click="selectAllTags"><span
-                                    v-if="!allTagsSelected">Select All</span><span v-else>Unselect All</span></a>
+                                    v-if="!allTagsSelected">Tümünü Seç</span><span v-else>Tümünü Kaldır</span></a>
                         </div>
                         <hr>
                         <input class="form-check-input mt-1" type="checkbox" value="t000t"
-                            v-model="selectedTags">&nbsp;&nbsp;No Tag
+                            v-model="selectedTags">&nbsp;&nbsp;Etiketsiz
                         <hr>
                         <span v-for="group in availableTags">
                             <h6 class="p-1 mb-0" :style="'background-color: ' + group.color + ';'">
@@ -442,7 +442,7 @@ const selectAllTags = () => {
                 <!-- Positions -->
                 <div class="col-6 col-lg-3 dropdown" v-show="pageId != 'screenshots' && pageId != 'calendar'">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">Positions <span class="dashInfoTitle">({{ selectedPositions.length
+                        aria-expanded="false">Pozisyonlar <span class="dashInfoTitle">({{ selectedPositions.length
                             }})</span></button>
                     <ul class="dropdown-menu dropdownCheck">
                         <div v-for="item in positions" :key="item.value" class="form-check">
@@ -478,10 +478,10 @@ const selectAllTags = () => {
                 </div>
 
                 <div class="col-12 text-center">
-                    <button class="btn btn-success btn-sm mt-2" v-on:click="saveFilter">Filter</button>
+                    <button class="btn btn-success btn-sm mt-2" v-on:click="saveFilter">Filtrele</button>
                     <span v-if="pageId == 'dashboard'">
                         <button class="btn btn-secondary btn-sm mt-2 ms-4 dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Export
+                            data-bs-toggle="dropdown" aria-expanded="false">Dışa Aktar
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"

@@ -3318,15 +3318,15 @@ export const positions = ref([{
 
 export const timeFrames = ref([{
     value: "daily",
-    label: "Daily"
+    label: "Günlük"
 },
 {
     value: "weekly",
-    label: "Weekly"
+    label: "Haftalık"
 },
 {
     value: "monthly",
-    label: "Monthly"
+    label: "Aylık"
 }
 ])
 
@@ -3340,13 +3340,13 @@ export const ratios = ref([{
 },
 {
     value: "profitFactor",
-    label: "Profit Factor"
+    label: "Kar Faktörü"
 }
 ])
 
 export const grossNet = ref([{
     value: "gross",
-    label: "Gross"
+    label: "Brüt"
 },
 {
     value: "net",
@@ -3356,11 +3356,11 @@ export const grossNet = ref([{
 
 export const plSatisfaction = ref([{
     value: "pl",
-    label: "P&L"
+    label: "K/Z"
 },
 {
     value: "satisfaction",
-    label: "Satisfaction"
+    label: "Memnuniyet"
 }
 ])
 

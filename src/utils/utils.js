@@ -216,83 +216,83 @@ export async function useGetPeriods() {
     return new Promise((resolve, reject) => {
         let temp = [{
             value: "all",
-            label: "All",
+            label: "Tümü",
             start: 0,
             end: 0
         }, {
             value: "thisWeek",
-            label: "This Week",
+            label: "Bu Hafta",
             start: Number(dayjs().tz(timeZoneTrade.value).startOf('week').add(1, 'day').unix()), // we need to transform as number because later it's stringified and this becomes date format and note unix format
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('week').add(1, 'day').unix())
         }, {
             value: "lastWeek",
-            label: "Last Week",
+            label: "Geçen Hafta",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'week').startOf('week').add(1, 'day').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'week').endOf('week').add(1, 'day').unix())
         }, {
             value: "lastWeekTilNow",
-            label: "Last Week Until Now",
+            label: "Geçen Haftadan Bugüne",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'week').startOf('week').add(1, 'day').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('week').add(1, 'day').unix())
         }, {
             value: "lastTwoWeeks",
-            label: "Last Two Weeks",
+            label: "Son İki Hafta",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(2, 'week').startOf('week').add(1, 'day').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'week').endOf('week').add(1, 'day').unix())
         }, {
             value: "lastTwoWeeksTilNow",
-            label: "Last Two Weeks Until Now",
+            label: "Son İki Haftadan Bugüne",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(2, 'week').startOf('week').add(1, 'day').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('week').add(1, 'day').unix())
         }, {
             value: "thisMonth",
-            label: "This Month",
+            label: "Bu Ay",
             start: Number(dayjs().tz(timeZoneTrade.value).startOf('month').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('month').unix())
         }, {
             value: "lastMonth",
-            label: "Last Month",
+            label: "Geçen Ay",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'month').startOf('month').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'month').endOf('month').unix())
         }, {
             value: "lastMonthTilNow",
-            label: "Last Month Until Now",
+            label: "Geçen Aydan Bugüne",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'month').startOf('month').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('month').unix())
         }, {
             value: "lastTwoMonths",
-            label: "Last Two Months",
+            label: "Son İki Ay",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(2, 'month').startOf('month').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'month').endOf('month').unix())
         }, {
             value: "lastTwoMonthsTilNow",
-            label: "Last Two Months Until Now",
+            label: "Son İki Aydan Bugüne",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(2, 'month').startOf('month').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('month').unix())
         }, {
             value: "lastThreeMonths",
-            label: "Last Three Months",
+            label: "Son Üç Ay",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(3, 'month').startOf('month').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'month').endOf('month').unix())
         }, {
             value: "lastThreeMonthsTilNow",
-            label: "Last Three Months Until Now",
+            label: "Son Üç Aydan Bugüne",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(3, 'month').startOf('month').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('month').unix())
         }, {
             value: "thisYear",
-            label: "This Year",
+            label: "Bu Yıl",
             start: Number(dayjs().tz(timeZoneTrade.value).startOf('year').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).endOf('year').unix())
         }, {
             value: "lastYear",
 
-            label: "Last Year",
+            label: "Geçen Yıl",
             start: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'year').startOf('year').unix()),
             end: Number(dayjs().tz(timeZoneTrade.value).subtract(1, 'year').endOf('year').unix())
         }, {
             value: "custom",
-            label: "Custom",
+            label: "Özel",
             start: -1,
             end: -1
         }]

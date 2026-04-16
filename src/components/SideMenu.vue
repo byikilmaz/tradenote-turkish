@@ -19,7 +19,7 @@ import { useToggleMobileMenu } from "../utils/utils";
                     href="/dashboard">
                     <i class="uil uil-apps me-2"></i>Panel</a>
                 <a id="step4" v-bind:class="[pageId === 'daily' ? 'activeNavCss' : '', 'nav-link', 'mb-2']" href="/daily">
-                    <i class="uil uil-signal-alt-3 me-2"></i>Daily
+                    <i class="uil uil-signal-alt-3 me-2"></i>Günlük
                 </a>
                 <a id="step5" v-bind:class="[pageId === 'calendar' ? 'activeNavCss' : '', 'nav-link', 'mb-2']"
                     href="/calendar">
@@ -31,15 +31,15 @@ import { useToggleMobileMenu } from "../utils/utils";
             <div class="sideMenuDivContent">
                 <label class="fw-lighter mt-3">YANSITMA</label>
                 <a id="step6" v-bind:class="[pageId === 'diary' ? 'activeNavCss' : '', 'nav-link', 'mb-2']" href="/diary">
-                    <i class="uil uil-diary me-2"></i>Diary
+                    <i class="uil uil-diary me-2"></i>Günce
                 </a>
                 <a id="step7" v-bind:class="[pageId === 'screenshots' ? 'activeNavCss' : '', 'nav-link', 'mb-2']"
                     href="/screenshots">
-                    <i class="uil uil-image-v me-2"></i>Screenshots
+                    <i class="uil uil-image-v me-2"></i>Ekran Görüntüleri
                 </a>
                 <a id="step8" v-bind:class="[pageId === 'playbook' ? 'activeNavCss' : '', 'nav-link', 'mb-2']"
                     href="/playbook">
-                    <i class="uil uil-compass me-2"></i>Playbook
+                    <i class="uil uil-compass me-2"></i>Strateji Defteri
                 </a>
             </div>
         </div>
