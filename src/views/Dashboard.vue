@@ -8,27 +8,27 @@ import NoData from '../components/NoData.vue';
 
 const dashTabs = [{
     id: "overviewTab",
-    label: "Overview",
+    label: "Genel Bakış",
     target: "#overviewNav"
 },
 {
     id: "timeTab",
-    label: "Time&Date",
+    label: "Zaman&Tarih",
     target: "#timeNav"
 },
 {
     id: "tradesTab",
-    label: "Trades&Executions",
+    label: "İşlemler&Emirler",
     target: "#tradesNav"
 },
 {
     id: "setupsTab",
-    label: "Setups",
+    label: "Kurulumlar",
     target: "#setupsNav"
 },
 {
     id: "financialsTab",
-    label: "Financials",
+    label: "Finansallar",
     target: "#financialsNav"
 }
 ]
@@ -119,7 +119,7 @@ onBeforeMount(async () => {
                 +
                 'Proceeds']) }}
                                                     </h4>
-                                                    <span class="dashInfoTitle">Cumulated P&L</span>
+                                                    <span class="dashInfoTitle">Toplam K/Z</span>
 
                                                 </div>
                                             </div>
@@ -145,7 +145,7 @@ onBeforeMount(async () => {
         }}</span>
                                                         <span v-else>-</span>
                                                     </h4>
-                                                    <span class="dashInfoTitle">P/L Ratio</span>
+                                                    <span class="dashInfoTitle">K/Z Oranı</span>
                                                 </div>
                                             </div>
                                             <div v-show="profitAnalysis[amountCase + 'MfeR'] != null"
@@ -158,7 +158,7 @@ onBeforeMount(async () => {
         }}</span>
                                                         <span v-else>-</span>
                                                     </h4>
-                                                    <span class="dashInfoTitle">MFE P/L Ratio</span>
+                                                    <span class="dashInfoTitle">MFE K/Z Oranı</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +181,7 @@ onBeforeMount(async () => {
         }}</span>
                                                                 <span v-else>-</span>
                                                             </h5>
-                                                            <span class="dashInfoTitle">Win Per Share (avg.)</span>
+                                                            <span class="dashInfoTitle">Hisse Başı Kazanç (ort.)</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
@@ -194,7 +194,7 @@ onBeforeMount(async () => {
         }}</span>
                                                                 <span v-else>-</span>
                                                             </h5>
-                                                            <span class="dashInfoTitle">Loss Per Share (avg.)</span>
+                                                            <span class="dashInfoTitle">Hisse Başı Kayıp (ort.)</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -211,7 +211,7 @@ onBeforeMount(async () => {
         }}</span>
                                                                 <span v-else>-</span>
                                                             </h5>
-                                                            <span class="dashInfoTitle">Win Per Share (high)</span>
+                                                            <span class="dashInfoTitle">Hisse Başı Kazanç (maks.)</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
@@ -223,7 +223,7 @@ onBeforeMount(async () => {
                 'HighLossPerShare']) }}</span>
                                                                 <span v-else>-</span>
                                                             </h5>
-                                                            <span class="dashInfoTitle">Loss Per Share (high)</span>
+                                                            <span class="dashInfoTitle">Hisse Başı Kayıp (maks.)</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -251,7 +251,7 @@ onBeforeMount(async () => {
                                                                     class="chartIdCardClass d-flex align-items-center justify-content-center">
                                                                     <div>
                                                                         <div>-</div>
-                                                                        <div class="dashInfoTitle">Satisfaction</div>
+                                                                        <div class="dashInfoTitle">Memnuniyet</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -278,7 +278,7 @@ onBeforeMount(async () => {
                                 <!-- CUMULATIVE P&L -->
                                 <div class="col-12 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Cumulated P&L</h6>
+                                        <h6>Toplam K/Z</h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>-->
@@ -299,7 +299,7 @@ onBeforeMount(async () => {
                                 <!-- WIN LOSS CHART -->
                                 <div class="col-12 col-xl-6 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Win Rate</h6>
+                                        <h6>Kazanç Oranı</h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>-->
@@ -310,7 +310,7 @@ onBeforeMount(async () => {
                                 <!-- RISK REWARD CHART
                     <div class="col-12 col-xl-6 mb-3">
                         <div class="dailyCard">
-                            <h6>Risk & Reward</h6>
+                            <h6>Risk & Getiri</h6>
                             <div class="text-center" v-if="!dashboardChartsMounted">
                                 <div class="spinner-border text-blue" role="status"></div>
                             </div>
@@ -331,7 +331,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY DAY OF WEEK -->
                                 <div class="col-12 col-xl-4 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Day of Week ({{ ratioCompute.shortName }})
+                                        <h6>Haftanın Gününe Göre ({{ ratioCompute.shortName }})
                                         </h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
@@ -343,7 +343,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY TIMEFRAME -->
                                 <div class="col-12 col-xl-4 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Timeframe ({{ratioCompute.shortName}})
+                                        <h6>Zaman Dilimine Göre ({{ratioCompute.shortName}})
                                         </h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
@@ -355,7 +355,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY DURATION -->
                                 <div class="col-12 col-xl-4 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Duration ({{ ratioCompute.shortName }})
+                                        <h6>Süreye Göre ({{ ratioCompute.shortName }})
                                         </h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
@@ -368,7 +368,7 @@ onBeforeMount(async () => {
                                 <!-- SCATTER WINS
                                 <div class="col-12">
                                     <div class="dailyCard">
-                                        <h6>Scatter Wins</h6>
+                                        <h6>Kazançlar Dağılımı</h6>
                                         <div v-bind:key="renderData" id="scatterChart1" class="chartClass"></div>
                                     </div>
                                 </div>
@@ -376,7 +376,7 @@ onBeforeMount(async () => {
                                 SCATTER LOSSES 
                                 <div class="col-12">
                                     <div class="dailyCard">
-                                        <h6>Scatter Losses</h6>
+                                        <h6>Kayıplar Dağılımı</h6>
                                         <div v-bind:key="renderData" id="scatterChart2" class="chartClass"></div>
                                     </div>
                                 </div>-->
@@ -394,7 +394,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY TRADES -->
                                 <div class="col-12 col-xl-6 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Trades ({{ ratioCompute.shortName }})</h6>
+                                        <h6>İşlem Sayısına Göre ({{ ratioCompute.shortName }})</h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>-->
@@ -405,7 +405,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY EXECUTIONS -->
                                 <div class="col-12 col-xl-6 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Executions ({{ ratioCompute.shortName }})</h6>
+                                        <h6>Emir Sayısına Göre ({{ ratioCompute.shortName }})</h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>-->
@@ -425,7 +425,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY POSITION -->
                                 <div class="col-12 col-xl-6 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Position ({{ ratioCompute.shortName }})</h6>
+                                        <h6>Pozisyona Göre ({{ ratioCompute.shortName }})</h6>
                                         <div class="text-center" v-if="!dashboardChartsMounted">
                                             <div class="spinner-border text-blue" role="status"></div>
                                         </div>
@@ -436,7 +436,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY TAGS -->
                                 <div class="col-12 col-xl-6 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Tag ({{ ratioCompute.shortName }})</h6>
+                                        <h6>Etikete Göre ({{ ratioCompute.shortName }})</h6>
                                         <div class="text-center" v-if="!dashboardChartsMounted">
                                             <div class="spinner-border text-blue" role="status"></div>
                                         </div>
@@ -447,7 +447,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY TAG COMBINATION -->
                                 <div class="col-12 col-xl-6 mb-3" v-for="obj in barChartNegativeTagGroups">
                                     <div class="dailyCard">
-                                        <h6>Group by Tag Group - {{ obj.name }} ({{ ratioCompute.shortName }})</h6>
+                                        <h6>Etiket Grubuna Göre - {{ obj.name }} ({{ ratioCompute.shortName }})</h6>
                                         <div class="text-center" v-if="!dashboardChartsMounted">
                                             <div class="spinner-border text-blue" role="status"></div>
                                         </div>
@@ -468,7 +468,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY SYMBOL -->
                                 <div class="col-12 col-xl-6 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Symbol ({{ ratioCompute.shortName }})</h6>
+                                        <h6>Sembole Göre ({{ ratioCompute.shortName }})</h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>-->
@@ -479,7 +479,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY FLOAT
                         <div class="col-12 col-xl-4 mb-3">
                             <div class="dailyCard">
-                                <h6>Group by Share Float</h6>
+                                <h6>Dolaşımdaki Hisseye Göre</h6>
                                 <div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>
@@ -490,7 +490,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY MARKET CAP
                         <div class="col-12 col-xl-4 mb-3">
                             <div class="dailyCard">
-                                <h6>Group by Market Cap</h6>
+                                <h6>Piyasa Değerine Göre</h6>
                                 <div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>
@@ -501,7 +501,7 @@ onBeforeMount(async () => {
                                 <!-- GROUP BY ENTRYPRICE -->
                                 <div class="col-12 col-xl-6 mb-3">
                                     <div class="dailyCard">
-                                        <h6>Group by Entry Price ({{ ratioCompute.shortName }})</h6>
+                                        <h6>Giriş Fiyatına Göre ({{ ratioCompute.shortName }})</h6>
                                         <!--<div class="text-center" v-if="!dashboardChartsMounted">
                                     <div class="spinner-border text-blue" role="status"></div>
                                 </div>-->

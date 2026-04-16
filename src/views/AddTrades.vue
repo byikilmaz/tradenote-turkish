@@ -25,8 +25,8 @@ function inputChooseBroker(param) {
 <template>
     <SpinnerLoadingPage />
     {{ currentUser.value }}
-    <p class="txt-small">See export instructions for your broker on <a
-            href="https://tradenote.co/brokers.html" target="_blank">Brokers Page</a>. <span v-if="!(currentUser.hasOwnProperty('apis') && currentUser.apis.length>0 && currentUser.apis.findIndex(obj => obj.provider === 'polygon' || obj.provider === 'databento') !=-1)">To add MFE prices automatically, insert your API key in <a href="/settings">settings</a>.</span>
+    <p class="txt-small">Broker'ınız için dışa aktarma talimatlarını <a
+            href="https://tradenote.co/brokers.html" target="_blank">Broker Sayfası</a>. <span v-if="!(currentUser.hasOwnProperty('apis') && currentUser.apis.length>0 && currentUser.apis.findIndex(obj => obj.provider === 'polygon' || obj.provider === 'databento') !=-1)">MFE fiyatlarını otomatik eklemek için API anahtarınızı <a href="/settings">ayarlar</a>.</span>
     </p>
     <!--DROPDOWN LIST-->
     <div class="form-floating">
@@ -34,16 +34,16 @@ function inputChooseBroker(param) {
             <option v-for="item in brokers" v-bind:value="item.value" v-bind:selected="item.value == selectedBroker">
                 {{ item.label }}</option>
         </select>
-        <label for="floatingSelect">Select your broker or trading platform</label>
+        <label for="floatingSelect">Broker veya işlem platformunuzu seçin</label>
     </div>
     <p class="mt-2" v-show="selectedBroker">
-        Supported asset types: <span
+        Desteklenen varlık türleri: <span
             v-for="(item, index) in brokers.filter(f => f.value == selectedBroker)[0].assetTypes">{{ item }}<span
                 v-show="brokers.filter(f => f.value == selectedBroker)[0].assetTypes.length > 1 && (index + 1) < brokers.filter(f => f.value == selectedBroker)[0].assetTypes.length">,
             </span></span>
     </p>
     <p v-show="selectedBroker == 'tradovate'">
-        Commisssion Plan: <span>
+        Komisyon Planı: <span>
             <div class="form-check form-check-inline" v-for="item in tradovateTiers" :key="item.value">
                 <input class="form-check-input" type="radio" :value="item.value" v-model="selectedTradovateTier">
                 {{ item.label }}
@@ -55,7 +55,7 @@ function inputChooseBroker(param) {
     <!--MFE-->
     <div class="mt-4" v-if="currentUser.hasOwnProperty('apis') && (currentUser.apis.findIndex(obj => obj.provider === 'polygon' || obj.provider === 'databento') > -1)">
         <div class="form-check form-switch">
-            <label>Add MFE prices automatically</label>
+            <label>MFE fiyatlarını otomatik ekle</label>
             <input class="form-check-input" type="checkbox" role="switch" v-model="uploadMfePrices"
                 v-on:click="uploadMfePrices = !uploadMfePrices">
         </div>
@@ -73,13 +73,13 @@ function inputChooseBroker(param) {
             <div class="form-floating">
                 <textarea class="form-control" style="height: 100px"
                     v-on:change="brokerData = $event.target.value"></textarea>
-                <label for="tradesInputText">Paste your data</label>
+                <label for="tradesInputText">Verinizi yapıştırın</label>
             </div>
 
-            <button type="button" v-on:click="useImportTrades('', 'text')" class="btn btn-success mt-3 mb-3">Load</button>
+            <button type="button" v-on:click="useImportTrades('', 'text')" class="btn btn-success mt-3 mb-3">Yükle</button>
         </div>
         <div v-if="existingImports.length != 0">
-            Following dates are already imported: <span v-for="(item, index) in existingImports">
+            Aşağıdaki tarihler zaten içe aktarıldı: <span v-for="(item, index) in existingImports">
                 <span v-if="index > 0">, </span>{{ useDateCalFormat(item) }}</span>
         </div>
 
@@ -90,16 +90,16 @@ function inputChooseBroker(param) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Symbol</th>
-                            <th scope="col">Vol</th>
-                            <th scope="col">P/L gross</th>
-                            <th scope="col">Comm</th>
-                            <th scope="col">Tot Fees</th>
-                            <th scope="col">P/L net</th>
-                            <th scope="col">Wins(g)</th>
-                            <th scope="col">Loss(g)</th>
-                            <th scope="col">Trades</th>
-                            <th scope="col">Executions</th>
+                            <th scope="col">Sembol</th>
+                            <th scope="col">Hacim</th>
+                            <th scope="col">K/Z brüt</th>
+                            <th scope="col">Kom.</th>
+                            <th scope="col">Top. Ücret</th>
+                            <th scope="col">K/Z net</th>
+                            <th scope="col">Kazanç(b)</th>
+                            <th scope="col">Kayıp(b)</th>
+                            <th scope="col">İşlemler</th>
+                            <th scope="col">Emirler</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,7 +118,7 @@ function inputChooseBroker(param) {
                             <td>{{ blot.executions }}</td>
                         </tr>
                         <tr v-if="index != null" class="sumRow">
-                            <td>Total</td>
+                            <td>Toplam</td>
                             <td>{{ useDecimalsArithmetic(pAndL[index].buyQuantity, pAndL[index].sellQuantity) }}</td>
                             <td v-bind:class="[pAndL[index].grossProceeds > 0 ? 'greenTrade' : 'redTrade']">
                                 {{ (pAndL[index].grossProceeds).toFixed(2) }}</td>
@@ -140,10 +140,10 @@ function inputChooseBroker(param) {
     <!--BUTTONS-->
     <div>
         <button v-show="Object.keys(executions).length > 0 && !spinnerLoadingPage" type="button"
-            v-on:click="useUploadTrades" class="btn btn-success btn-lg me-3">Submit</button>
+            v-on:click="useUploadTrades" class="btn btn-success btn-lg me-3">Gönder</button>
 
         <button type="cancel" onclick="location.href = 'dashboard';"
-            class="btn btn-outline-secondary btn-sm me-2">Cancel</button>
+            class="btn btn-outline-secondary btn-sm me-2">İptal</button>
 
     </div>
 </template>
